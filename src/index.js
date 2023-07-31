@@ -92,22 +92,22 @@ String.prototype.divide = function (param) {
     if (this === "0" || param === "0") {
         throw new Error("Bad arguments: can't divide by zero")
     }
+    if (this === param) {
+        return "1";
+    }
     let divisor, dividend;
     if (this.isGreaterOrEquals(param)) {
         divisor = param;
         dividend = this;
     } else {
-        divisor = this;
-        dividend = param;
+        return "0";
     }
-    let result = "", carry = 0;
-    for (let i = 0; i < dividend.length; i++) {
-        let buf = carry * 10 + (dividend[i] -  '0');
-        result += buf / divisor | 0;
-        carry = buf % divisor;
+    for (let i = "1"; ; i = i.plus("1")) {
+        dividend = dividend.minus(divisor);
+        if(!dividend.isGreaterOrEquals(divisor)) {
+            return i;
+        }
     }
-    let leadingZerosRegex = new RegExp("^0+(?!$)");
-    return result.replace(leadingZerosRegex, '');
 }
 
 String.prototype.isGreaterOrEquals = function (param) {

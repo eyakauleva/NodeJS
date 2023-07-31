@@ -25,13 +25,15 @@ String.prototype.plus = function (param) {
 }
 
 String.prototype.minus = function (param) {
-    let subtrahend, minuend;
+    let subtrahend, minuend, isResultNegative;
     if (this.isGreaterOrEquals(param)) {
         subtrahend = param.split("").reverse().join("");
         minuend = this.split("").reverse().join("");
+        isResultNegative = false;
     } else {
         subtrahend = this.split("").reverse().join("");
         minuend = param.split("").reverse().join("");
+        isResultNegative = true;
     }
     let result = "", carry = 0;
     for (let i = 0; i < minuend.length; i++) {
@@ -49,8 +51,12 @@ String.prototype.minus = function (param) {
         }
         result += diff;
     }
+    let appender = "";
+    if (isResultNegative) {
+        appender = "-";
+    }
     let leadingZerosRegex = new RegExp("^0+(?!$)");
-    return result.split("").reverse().join("").replace(leadingZerosRegex, '');
+    return appender + result.split("").reverse().join("").replace(leadingZerosRegex, '');
 }
 
 String.prototype.multiply = function (param) {

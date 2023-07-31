@@ -83,7 +83,7 @@ String.prototype.multiply = function (param) {
 }
 
 String.prototype.divide = function (param) {
-    if (this == 0 || param == 0) {
+    if (this === "0" || param === "0") {
         throw new Error("Bad arguments: can't divide by zero")
     }
     let divisor, dividend;
@@ -116,7 +116,7 @@ String.prototype.isGreaterOrEquals = function (param) {
             } else if (this[i] < param[i]) {
                 return false;
             } 
-            if (i == param.length - 1) {
+            if (i === param.length - 1) {
                 return true;
             }
         }

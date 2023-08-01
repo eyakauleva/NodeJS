@@ -20,7 +20,7 @@ function validate(param) {
         throw new TypeError("Param cannot be undefined");
     } else if (typeof param === "function") {
         throw new TypeError("Param cannot be function");
-    } else if (typeof param === "object") {
+    } else if (typeof param === "object" && !(param instanceof Array)) {
         throw new TypeError("Param cannot be object");
     } else if (Number.isNaN(param)) {
         throw new TypeError("Param cannot be NaN");

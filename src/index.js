@@ -49,6 +49,61 @@ function convertToNumber(param) {
     }
 }
 
+function coerceToType(value, type) {
+    type = type.trim().toLowerCase();
+    let incoercibleTypes = ["nan", "infinity", "function", "null", "undefined", "object"]
+    if (incoercibleTypes.indexOf(type) > -1) {
+        throw new TypeError("Unable to coerce to the provided type");
+    }
+    incoercibleTypes.forEach(incoercibleType => {
+        if (typeof value === incoercibleType) {
+            throw new TypeError("Unable to coerce provided value");
+        }
+    })
+    if (type === "string") {
+        return stringifyValue(value);
+    } else if (type === "number") {
+        return convertToNumber(value);
+    } else if (type === "boolean") {
+        if (typeof value === "string") {
+            return value.length > 0;
+        } else if (typeof value === "number") {
+            return value !== 0;
+        } else if (typeof value === "boolean") {
+            return value;
+        } else if (typeof value === "bigint") {
+            return value !== BigInt(0);
+        } else if (typeof value === "symbol") {
+            return value.description !== undefined;
+        } else if (value instanceof Array) {
+            return value.length > 0;
+        }
+    } else if (type === "bigint") {
+        return BigInt(value);
+    } else if (type === "symbol") {
+        return Symbol(value);
+    } else if (type === "array") {
+        return [ value ];
+    }
+}
+
+function validate(param) {
+    if (typeof param === "undefined") {
+        throw new TypeError("Param cannot be undefined");
+    } else if (typeof param === "function") {
+        throw new TypeError("Param cannot be function");
+    } else if (typeof param === "object") {
+        throw new TypeError("Param cannot be object");
+    } else if (Number.isNaN(param)) {
+        throw new TypeError("Param cannot be NaN");
+    } else if (param === Number.POSITIVE_INFINITY || param === Number.NEGATIVE_INFINITY) {
+        throw new TypeError("Param cannot be Infinity");
+    } else if (typeof param === "symbol") {
+        return param.description;
+    } else {
+        return param;
+    }
+}
 
 
 

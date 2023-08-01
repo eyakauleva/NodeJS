@@ -1,6 +1,4 @@
 function addValues(param1, param2) {
-
-    // TODO
     if (param1 instanceof Array) {
         return param1.concat(param2);
     } else if (param2 instanceof Array) {
@@ -103,17 +101,4 @@ function validate(param) {
     } else {
         return param;
     }
-}
-
-
-
-try {
-    // console.log(addValues(5, [5,7]))
-    // console.log(stringifyValue(function() {return 1;}))
-    // let a = true;
-    // console.log(invertBoolean(null))
-    let a = true
-    console.log(convertToNumber(a))
-} catch (error) {
-    console.log(error.message)
 }

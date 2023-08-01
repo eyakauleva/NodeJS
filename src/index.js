@@ -5,36 +5,12 @@ function addValues(param1, param2) {
         return param1.concat(param2);
     } else if (param2 instanceof Array) {
         return param2.concat(param1);
-    }
-
-    param1 = validate(param1);
-    param2 = validate(param2);
-    if (typeof param1 === "string" || typeof param2 === "string") {
+    } else if (typeof param1 === "string" || typeof param2 === "string") {
         return param1 + param2;
-    }
-    if (typeof param1 === "boolean" || typeof param2 === "boolean") {
+    } else if (typeof param1 === "boolean" || typeof param2 === "boolean") {
         return param1 && param2;
     }
-    
-    return param1 + param2;
-}
-
-function validate(param) {
-    if (typeof param === "undefined") {
-        throw new TypeError("Param cannot be undefined");
-    } else if (typeof param === "function") {
-        throw new TypeError("Param cannot be function");
-    } else if (typeof param === "object") {
-        throw new TypeError("Param cannot be object");
-    } else if (Number.isNaN(param)) {
-        throw new TypeError("Param cannot be NaN");
-    } else if (param === Number.POSITIVE_INFINITY || param === Number.NEGATIVE_INFINITY) {
-        throw new TypeError("Param cannot be Infinity");
-    } else if (typeof param === "symbol") {
-        return param.description;
-    } else {
-        return param;
-    }
+    return validate(param1) + validate(param2);
 }
 
 function stringifyValue(param) {

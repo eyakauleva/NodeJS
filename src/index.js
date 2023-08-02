@@ -45,3 +45,13 @@ export function getFullName(person) {
     }
     return person.firstName + " " + person.lastName;
 }
+
+export function filterUniqueWords(text) {
+    if(typeof text !== "string") {
+        throw new TypeError("Test must be a string");
+    }
+    return text.toLowerCase()
+        .split(" ")
+        .filter((value, index, array) => array.indexOf(value) === index)
+        .sort();
+}

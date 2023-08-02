@@ -1,4 +1,4 @@
-import { calculateDiscountedPrice, calculateTotalPrice, getFullName } from "../src/index";
+import { calculateDiscountedPrice, calculateTotalPrice, getFullName, filterUniqueWords } from "../src/index";
 
 test('calculateDiscountedPrice', () => {
     let given = [
@@ -70,4 +70,16 @@ test('getFullName with type errors', () => {
     expect(() => getFullName(personWithBadProperties)).toThrow(TypeError);
     expect(() => getFullName(undefined)).toThrow(TypeError);
     expect(() => getFullName("lallalala")).toThrow(TypeError);
+});
+
+test('filterUniqueWords', () => {
+    let given = "I love NodeJs i programming nodejs love sun";
+    let expected = [ 'i', 'love', 'nodejs', 'programming', 'sun' ];
+    let result = filterUniqueWords(given);
+    expect(result).toEqual(expected);
+});
+
+test('filterUniqueWords with type error', () => {
+    let given = 45;
+    expect(() => filterUniqueWords(given)).toThrow(TypeError);
 });

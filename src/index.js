@@ -55,3 +55,19 @@ export function filterUniqueWords(text) {
         .filter((value, index, array) => array.indexOf(value) === index)
         .sort();
 }
+
+export function getAverageGrade(students) {
+    if(!(students instanceof Array)) {
+        throw new TypeError("Students must be an array");
+    }
+    let gradesSum = 0, gradesCount = 0;
+    students.forEach(student => {
+        if (!student.hasOwnProperty('name') || !student.hasOwnProperty('grades') 
+                || !(student.grades instanceof Array)) {
+            throw new TypeError("Each student must contain name and grades");
+        }
+        gradesSum += student.grades.reduce((a, b) => a + b, 0);
+        gradesCount += student.grades.length;
+    });
+    return Number((gradesSum / gradesCount).toFixed(1));
+}

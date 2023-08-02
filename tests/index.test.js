@@ -1,4 +1,4 @@
-import { calculateDiscountedPrice, calculateTotalPrice, getFullName, filterUniqueWords } from "../src/index";
+import { calculateDiscountedPrice, calculateTotalPrice, getFullName, filterUniqueWords, getAverageGrade } from "../src/index";
 
 test('calculateDiscountedPrice', () => {
     let given = [
@@ -83,3 +83,30 @@ test('filterUniqueWords with type error', () => {
     let given = 45;
     expect(() => filterUniqueWords(given)).toThrow(TypeError);
 });
+
+test('getAverageGrade', () => {
+    let given = [
+        { name: "student1", grades: [9, 10]},
+        { name: "student2", grades: [5.5, 8]},
+        { name: "student3", grades: [6, 7]}
+    ];
+    let expected = 7.6;
+    let result = getAverageGrade(given);
+    expect(result).toEqual(expected);
+});
+
+test('getAverageGrade with type errors', () => {
+    let studentsWithBadProperties = [
+        { name: "student1", grades: [9, 10]},
+        { name: "student2"}
+    ];
+    let studentsWithBadProperties2 = [
+        { name: "student1", grades: [9, 10]},
+        { name: "student2", grades: "lalalala"}
+    ];
+    expect(() => getAverageGrade(undefined)).toThrow(TypeError);
+    expect(() => getAverageGrade(studentsWithBadProperties)).toThrow(TypeError);
+    expect(() => getAverageGrade(studentsWithBadProperties2)).toThrow(TypeError);
+});
+
+

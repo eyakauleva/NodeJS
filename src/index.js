@@ -61,9 +61,14 @@ export const coerceToType = function (value, type) {
     if (incoercibleTypes.indexOf(type) > -1) {
         throw new TypeError("Unable to coerce to the provided type");
     }
+    if (Number.isNaN(value) || value === Number.POSITIVE_INFINITY || value === Number.NEGATIVE_INFINITY) {
+        throw new TypeError("Unable to coerce provided value");
+    }
     incoercibleTypes.forEach(incoercibleType => {
         if (typeof value === incoercibleType) {
-            throw new TypeError("Unable to coerce provided value");
+            if (!(value instanceof Array)) {
+                throw new TypeError("Unable to coerce provided value");
+            }
         }
     })
     if (type === "string") {

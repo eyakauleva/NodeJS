@@ -1,4 +1,4 @@
-function addValues(param1, param2) {
+export const addValues = function (param1, param2) {
     if (param1 instanceof Array) {
         return param1.concat(param2);
     } else if (param2 instanceof Array) {
@@ -7,11 +7,19 @@ function addValues(param1, param2) {
         return param1 + param2;
     } else if (typeof param1 === "boolean" || typeof param2 === "boolean") {
         return param1 && param2;
+    } else if (typeof param1 === "bigint") {
+        if (typeof param2 === "number") {
+            param2 = BigInt(param2);
+        }
+    } else if (typeof param2 === "bigint") {
+        if (typeof param1 === "number") {
+            param1 = BigInt(param1);
+        }
     }
     return validate(param1) + validate(param2);
 }
 
-function stringifyValue(param) {
+export const stringifyValue = function (param) {
     if (typeof param === "symbol") {
         return param.description;
     } else if (param === null || param === undefined) {
@@ -23,7 +31,7 @@ function stringifyValue(param) {
     }
 }
 
-function invertBoolean(param) {
+export const invertBoolean = function (param) {
     if (typeof param !== "boolean") {
         throw new TypeError("Param must be boolean");
     } else {
@@ -31,7 +39,7 @@ function invertBoolean(param) {
     }
 }
 
-function convertToNumber(param) {
+export const convertToNumber = function (param) {
     param = validate(param);
     if (typeof param === "string") {
         let buf = parseFloat(param);
@@ -40,14 +48,14 @@ function convertToNumber(param) {
         } else {
             return buf;
         }
-    } else if (typeof param === "boolean") {
+    } else if (typeof param === "boolean" || typeof param === "bigint") {
         return Number(param);
     } else {
         return param;
     }
 }
 
-function coerceToType(value, type) {
+export const coerceToType = function (value, type) {
     type = type.trim().toLowerCase();
     let incoercibleTypes = ["nan", "infinity", "function", "null", "undefined", "object"]
     if (incoercibleTypes.indexOf(type) > -1) {

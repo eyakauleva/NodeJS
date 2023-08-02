@@ -1,7 +1,7 @@
 import { coerceToType } from "../src/index";
 
 test('number -> string', () => {
-    expect(coerceToType(100, " sTrIng    ")).toBe("100");
+    expect(coerceToType(100, " sTrIng    ")).toEqual("100");
 });
 
 test('number -> NaN', () => {
@@ -53,51 +53,51 @@ test('object -> string', () => {
 });
 
 test('bigint -> string', () => {
-    expect(coerceToType(123n, "string")).toBe("123");
+    expect(coerceToType(123n, "string")).toEqual("123");
 });
 
 test('string -> number', () => {
-    expect(coerceToType("123", "number")).toBe(123);
+    expect(coerceToType("123", "number")).toEqual(123);
 });
 
 test('string -> boolean', () => {
-    expect(coerceToType("123", "boolean")).toBe(true);
+    expect(coerceToType("123", "boolean")).toEqual(true);
 });
 
 test('string -> boolean', () => {
-    expect(coerceToType("", "boolean")).toBe(false);
+    expect(coerceToType("", "boolean")).toEqual(false);
 });
 
 test('number -> boolean', () => {
-    expect(coerceToType(24.66, "boolean")).toBe(true);
+    expect(coerceToType(24.66, "boolean")).toEqual(true);
 });
 
 test('number -> boolean', () => {
-    expect(coerceToType(0.00, "boolean")).toBe(false);
+    expect(coerceToType(0.00, "boolean")).toEqual(false);
 });
 
 test('bigint -> boolean', () => {
-    expect(coerceToType(123n, "boolean")).toBe(true);
+    expect(coerceToType(123n, "boolean")).toEqual(true);
 });
 
 test('bigint -> boolean', () => {
-    expect(coerceToType(0n, "boolean")).toBe(false);
+    expect(coerceToType(0n, "boolean")).toEqual(false);
 });
 
 test('symbol -> boolean', () => {
-    expect(coerceToType(Symbol(), "boolean")).toBe(false);
+    expect(coerceToType(Symbol(), "boolean")).toEqual(false);
 });
 
 test('symbol -> boolean', () => {
-    expect(coerceToType(Symbol(34), "boolean")).toBe(true);
+    expect(coerceToType(Symbol(34), "boolean")).toEqual(true);
 });
 
 test('array -> boolean', () => {
-    expect(coerceToType([2], "boolean")).toBe(true);
+    expect(coerceToType([2], "boolean")).toEqual(true);
 });
 
 test('array -> boolean', () => {
-    expect(coerceToType([], "boolean")).toBe(false);
+    expect(coerceToType([], "boolean")).toEqual(false);
 });
 
 test('string -> bigint', () => {
@@ -105,18 +105,18 @@ test('string -> bigint', () => {
 });
 
 test('string -> bigint', () => {
-    expect(coerceToType("123", "bigint")).toBe(123n);
+    expect(coerceToType("123", "bigint")).toEqual(123n);
 });
 
 test('boolean -> bigint', () => {
-    expect(coerceToType(false, "bigint")).toBe(BigInt(0n));
+    expect(coerceToType(false, "bigint")).toEqual(BigInt(0n));
 });
 
 
 test('boolean -> symbol', () => {
-    expect(coerceToType(true, "symbol").toString()).toBe(Symbol(true).toString());
+    expect(coerceToType(true, "symbol").toString()).toEqual(Symbol(true).toString());
 });
 
 test('string -> array', () => {
-    expect(coerceToType("123", "array")).toStrictEqual(["123"]);
+    expect(coerceToType("123", "array")).toEqual(["123"]);
 });

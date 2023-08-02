@@ -1,27 +1,27 @@
 import { convertToNumber } from "../src/index";
 
 test('number', () => {
-    expect(convertToNumber(100)).toBe(100);
+    expect(convertToNumber(100)).toEqual(100);
 });
 
 test('boolean', () => {
-    expect(convertToNumber(true)).toBe(1);
+    expect(convertToNumber(true)).toEqual(1);
 });
 
 test('boolean', () => {
-    expect(convertToNumber(false)).toBe(0);
+    expect(convertToNumber(false)).toEqual(0);
 });
 
 test('bigint', () => {
-    expect(convertToNumber(123n)).toBe(123);
+    expect(convertToNumber(123n)).toEqual(123);
 });
 
 test('string', () => {
-    expect(convertToNumber("-23.77")).toBe(-23.77);
+    expect(convertToNumber("-23.77")).toEqual(-23.77);
 });
 
 test('string', () => {
-    expect(convertToNumber("-23.77qqqq")).toBe(-23.77);
+    expect(convertToNumber("-23.77qqqq")).toEqual(-23.77);
 });
 
 test('string', () => {
@@ -57,5 +57,5 @@ test('symbol', () => {
 });
 
 test('symbol', () => {
-    expect(convertToNumber(Symbol('134'))).toBe(134);
+    expect(convertToNumber(Symbol('134'))).toEqual(134);
 });

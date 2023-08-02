@@ -1,11 +1,11 @@
 import { invertBoolean } from "../src/index";
 
 test('boolean', () => {
-    expect(invertBoolean(true)).toBe(false);
+    expect(invertBoolean(true)).toEqual(false);
 });
 
 test('boolean', () => {
-    expect(invertBoolean(false)).toBe(true);
+    expect(invertBoolean(false)).toEqual(true);
 });
 
 test('number', () => {
@@ -21,5 +21,5 @@ test('undefined', () => {
 });
 
 test('expression', () => {
-    expect(invertBoolean(10 > -10)).toBe(false);
+    expect(invertBoolean(10 > -10)).toEqual(false);
 });

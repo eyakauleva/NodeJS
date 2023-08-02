@@ -1,4 +1,7 @@
-import { calculateDiscountedPrice, calculateTotalPrice, getFullName, filterUniqueWords, getAverageGrade } from "../src/index";
+import { calculateDiscountedPrice, calculateTotalPrice, getFullName, filterUniqueWords, getAverageGrade, createCounter } from "../src/index";
+
+
+// Task 1. Immutability and Pure Functions
 
 test('calculateDiscountedPrice', () => {
     let given = [
@@ -51,6 +54,9 @@ test('calculateTotalPrice with type errors', () => {
     expect(() => calculateTotalPrice([undefined, null, "product"])).toThrow(TypeError);
     expect(() => calculateTotalPrice(null)).toThrow(TypeError);
 });
+
+
+// Task 2: Function Composition and Point-Free Style
 
 test('getFullName', () => {
     let given = {
@@ -109,4 +115,22 @@ test('getAverageGrade with type errors', () => {
     expect(() => getAverageGrade(studentsWithBadProperties2)).toThrow(TypeError);
 });
 
+
+// Task 3: Closures and Higher-Order Functions
+
+test('createCounter', () => {
+    let one = createCounter();
+    expect(one()).toEqual(1);
+    let two = createCounter();
+    expect(two()).toEqual(1);
+    expect(one()).toEqual(2);
+    expect(two()).toEqual(2);
+    one();
+    one();
+    one();
+    one();
+    one();
+    expect(two()).toEqual(3);
+    expect(one()).toEqual(8);
+});
 

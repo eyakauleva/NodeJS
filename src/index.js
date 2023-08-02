@@ -71,3 +71,13 @@ export function getAverageGrade(students) {
     });
     return Number((gradesSum / gradesCount).toFixed(1));
 }
+
+
+// Task 3: Closures and Higher-Order Functions
+
+export function createCounter() {
+    let count = 0;
+    return function() {
+        return ++count;
+    } 
+}

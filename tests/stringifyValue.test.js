@@ -13,7 +13,7 @@ test('null', () => {
 });
 
 test('undefined', () => {
-    expect(stringifyValue(undefined)).toEqual("undefined");
+    expect(() => stringifyValue(undefined)).toThrow(TypeError);
 });
 
 test('object', () => {

@@ -22,8 +22,10 @@ export const addValues = function (param1, param2) {
 export const stringifyValue = function (param) {
     if (typeof param === "symbol") {
         return param.description;
-    } else if (param === null || param === undefined) {
+    } else if (param === null) {
         return String(param);
+    } else if (param === undefined) {
+        throw new TypeError("Param cannot be undefined");
     } else if (typeof param === "object") {
         return JSON.stringify(param)
     } else {

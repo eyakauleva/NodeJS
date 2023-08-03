@@ -1,7 +1,8 @@
 import { 
     calculateDiscountedPrice, calculateTotalPrice, 
     getFullName, filterUniqueWords, getAverageGrade, 
-    createCounter, repeatFunction
+    createCounter, repeatFunction,
+    calculateFactorial, power
 } from "../src/index";
 import {jest} from '@jest/globals';
 
@@ -153,7 +154,7 @@ describe('Task 3: Closures and Higher-Order Functions', () => {
             expect(two()).toEqual(3);
             expect(one()).toEqual(8);
         });
-    })
+    });
 
     describe('repeatFunction', () => {
         const mockCallback = jest.fn();
@@ -199,6 +200,18 @@ describe('Task 4: Recursion and Tail Call Optimization', () => {
         test('validation', () => {
             expect(() => calculateFactorial("6")).toThrow(TypeError);
             expect(() => calculateFactorial(0)).toThrow(TypeError);
+        });
+    });
+
+    describe('power', () => {
+        test('ok', () => {
+            expect(power(3, 3)).toEqual(27);
+            expect(power(3, 0)).toEqual(1);
+        });
+
+        test('validation', () => {
+            expect(() => power(3, -1)).toThrow(TypeError);
+            expect(() => power("3", 0)).toThrow(TypeError);
         });
     });
 

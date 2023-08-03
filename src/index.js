@@ -5,8 +5,7 @@ export function calculateDiscountedPrice(products, discount) {
     if(!(products instanceof Array)) {
         throw new TypeError("Products must be an array");
     }
-    if(typeof discount !== "number" || Number.isNaN(discount)
-            || discount === Number.POSITIVE_INFINITY || discount === Number.NEGATIVE_INFINITY) {
+    if(!isNumberValid(discount)) {
         throw new TypeError("Discount must be a number");
     }
     let productsWithDiscounts = [];
@@ -83,8 +82,7 @@ export function createCounter() {
 }
 
 export function repeatFunction(callback, times, stopCondition = () => false) {
-    if(typeof callback !== "function" || typeof times !== "number" || Number.isNaN(times)
-            || times === Number.POSITIVE_INFINITY || times === Number.NEGATIVE_INFINITY) {
+    if(typeof callback !== "function" || !isNumberValid(times)) {
         throw new TypeError("Function and valid number must be provided");
     }
     return function() {
@@ -95,4 +93,27 @@ export function repeatFunction(callback, times, stopCondition = () => false) {
             callback();
         }
     }
+}
+
+
+// Task 4: Recursion and Tail Call Optimization
+
+export function calculateFactorial(number, prevResult = 1) {
+    if (!isNumberValid(number) || !isNumberValid(prevResult)) {
+        throw new TypeError("Value must be a number");
+    }
+    if(number === 1) {
+        return number * prevResult;
+    } else {
+        let newResult = number * prevResult;
+        return calculateFactorial(number - 1, newResult);
+    }
+}
+
+function isNumberValid(number) {
+    if (typeof number !== "number" || Number.isNaN(number) 
+            || number === Number.POSITIVE_INFINITY || number === Number.NEGATIVE_INFINITY) {
+        return false;
+    }
+    return true;
 }

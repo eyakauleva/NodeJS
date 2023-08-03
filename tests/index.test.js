@@ -156,7 +156,27 @@ describe('Task 3: Closures and Higher-Order Functions', () => {
     })
 
     describe('repeatFunction', () => {
+        const mockCallback = jest.fn();
+        
+        beforeEach(() => {
+            mockCallback.mockClear();
+        });
+    
+        test('should be called provided times', () => {
+            let times = 5;
+            const repeatedFunction = repeatFunction(mockCallback, times);
+            repeatedFunction();
+            expect(mockCallback).toHaveBeenCalledTimes(times);
+        });
 
+        test('should be called infinitely', () => {
+            // TODO 
+        });
+        
+        test('validation', () => {
+            expect(() => repeatFunction(null, 5)()).toThrow(TypeError);
+            expect(() => repeatFunction(()=>{}, "lalala")()).toThrow(TypeError);
+        });
     })
 
 });

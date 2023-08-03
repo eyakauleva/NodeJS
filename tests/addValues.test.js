@@ -5,11 +5,11 @@ test('number + number = number', () => {
 });
 
 test('array + bool = array', () => {
-    expect(addValues([5,6], true)).toEqual([5, 6, true]);
+    expect(() => addValues([5,6], true)).toThrow(TypeError);
 });
 
 test('string + bool = string', () => {
-    expect(addValues("543.987", true)).toEqual("543.987true");
+    expect(() => addValues("543.987", true)).toThrow(TypeError);
 });
 
 test('string + number = string', () => {
@@ -17,7 +17,7 @@ test('string + number = string', () => {
 });
 
 test('bool + number = bool', () => {
-    expect(addValues(false, 55)).toEqual(false);
+    expect(() => addValues(false, 55)).toThrow(TypeError);
 });
 
 test('undefined + number = ERROR', () => {

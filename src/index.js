@@ -1,22 +1,35 @@
 export const addValues = function (param1, param2) {
-    if (param1 instanceof Array) {
+    param1 = validate(param1);
+    param2 = validate(param2);
+    if (param1 instanceof Array && param2 instanceof Array) {
         return param1.concat(param2);
-    } else if (param2 instanceof Array) {
-        return param2.concat(param1);
-    } else if (typeof param1 === "string" || typeof param2 === "string") {
-        return param1 + param2;
-    } else if (typeof param1 === "boolean" || typeof param2 === "boolean") {
-        return param1 && param2;
+    } else if (typeof param1 === "boolean" && typeof param2 === "boolean") {
+        return param1 || param2;
+    } else if (typeof param1 === "string") {
+        if (typeof param2 !== "bigint" && typeof param2 !== "number" && typeof param2 !== "string") {
+            throw new TypeError("String can be concatenated only with string or number");
+        } else {
+            return param1 + param2;
+        }
+    } else if (typeof param2 === "string") {
+        if (typeof param1 !== "bigint" && typeof param1 !== "number" && typeof param1 !== "string") {
+            throw new TypeError("String can be concatenated only with string or number");
+        } else {
+            return param1 + param2;
+        }
     } else if (typeof param1 === "bigint") {
         if (typeof param2 === "number") {
-            param2 = BigInt(param2);
+            return param1 + BigInt(param2);
         }
     } else if (typeof param2 === "bigint") {
         if (typeof param1 === "number") {
-            param1 = BigInt(param1);
+            return param2 + BigInt(param1);
         }
+    } else if (typeof param1 === "number" && typeof param2 === "number") {
+        return param1 + param2;
+    } else {
+        throw new TypeError("Bad params types");
     }
-    return validate(param1) + validate(param2);
 }
 
 export const stringifyValue = function (param) {

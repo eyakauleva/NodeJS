@@ -99,13 +99,13 @@ export function repeatFunction(callback, times, stopCondition = () => false) {
 // Task 4: Recursion and Tail Call Optimization
 
 export function calculateFactorial(number, prevResult = 1) {
-    if (!isNumberValid(number) || !isNumberValid(prevResult)) {
-        throw new TypeError("Value must be a number");
+    if (!isNumberValid(number) || number < 0) {
+        throw new TypeError("Value must be a positive number");
     }
     if(number === 1) {
-        return number * prevResult;
+        return BigInt(number) * BigInt(prevResult);
     } else {
-        let newResult = number * prevResult;
+        let newResult = BigInt(number) * BigInt(prevResult);
         return calculateFactorial(number - 1, newResult);
     }
 }

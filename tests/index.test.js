@@ -183,6 +183,23 @@ describe('Task 3: Closures and Higher-Order Functions', () => {
             expect(() => repeatFunction(null, 5)()).toThrow(TypeError);
             expect(() => repeatFunction(()=>{}, "lalala")()).toThrow(TypeError);
         });
-    })
+    });
+
+});
+
+
+describe('Task 4: Recursion and Tail Call Optimization', () => {
+
+    describe('calculateFactorial', () => {
+        test('ok', () => {
+            expect(calculateFactorial(6)).toEqual(720n);
+            expect(() => calculateFactorial(2437)).not.toThrow();
+        });
+
+        test('validation', () => {
+            expect(() => calculateFactorial("6")).toThrow(TypeError);
+            expect(() => calculateFactorial(0)).toThrow(TypeError);
+        });
+    });
 
 });

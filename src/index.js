@@ -82,13 +82,16 @@ export function createCounter() {
     } 
 }
 
-export function repeatFunction(callback, times) {
+export function repeatFunction(callback, times, stopCondition = () => false) {
     if(typeof callback !== "function" || typeof times !== "number" || Number.isNaN(times)
             || times === Number.POSITIVE_INFINITY || times === Number.NEGATIVE_INFINITY) {
         throw new TypeError("Function and valid number must be provided");
     }
     return function() {
         for(let i = 0; i < times || times < 0; i++) {
+            if (stopCondition()) {
+                break;
+            }
             callback();
         }
     }

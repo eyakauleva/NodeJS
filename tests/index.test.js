@@ -170,7 +170,13 @@ describe('Task 3: Closures and Higher-Order Functions', () => {
         });
 
         test('should be called infinitely', () => {
-            // TODO 
+            let times = -10;
+            let stopCall = 15;
+            const stopCondition = () => mockCallback.mock.calls.length === stopCall;
+            const repeatedFunction = repeatFunction(mockCallback, times, stopCondition);
+            repeatedFunction();
+            expect(mockCallback.mock.calls.length > times).toEqual(true);
+            expect(mockCallback.mock.calls.length === stopCall).toEqual(true);
         });
         
         test('validation', () => {

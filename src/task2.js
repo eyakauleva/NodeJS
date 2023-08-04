@@ -1,15 +1,13 @@
 
 export function getFullName(person) {
-    if (isPersonValid(person)) {
-        return retrieveFullName(person);
-    }
-    else {
-        throw new TypeError("Person must have firstName and lastName");
-    }
+    validatePerson(person);
+    return retrieveFullName(person);
 }
 
-function isPersonValid(person) {
-    return person.hasOwnProperty('firstName') && person.hasOwnProperty('lastName');
+function validatePerson(person) {
+    if (!person.hasOwnProperty('firstName') || !person.hasOwnProperty('lastName')) {
+        throw new TypeError("Person must have firstName and lastName");
+    }
 }
 
 function retrieveFullName(person) {
@@ -17,17 +15,15 @@ function retrieveFullName(person) {
 }
 
 export function filterUniqueWords(text) {
-    isTextValid(text);
+    validateText(text);
     return text.toLowerCase()
             .split(" ")
             .filter(filterWords)
             .sort();
 }
 
-function isTextValid(text) {
-    if (typeof text === "string") {
-        return true;
-    } else {
+function validateText(text) {
+    if (typeof text !== "string") {
         throw new TypeError("Test must be a string");
     }
 }
@@ -37,11 +33,11 @@ function filterWords(value, index, array) {
 }
 
 export function getAverageGrade(students) {
-    areStudentsValid(students);
+    validateStudents(students);
     return gradesAverage(students);
 }
 
-function areStudentsValid(students) {
+function validateStudents(students) {
     if(!(students instanceof Array)) {
         throw new TypeError("Students must be an array");
     }
@@ -51,7 +47,6 @@ function areStudentsValid(students) {
             throw new TypeError("Each student must contain name and grades");
         }
     });
-    return true;
 }
 
 function gradesAverage(students) {

@@ -16,11 +16,12 @@ export function lazyMap(arrayArg, mappingFuncArg) {
 }
 
 export function fibonacciGenerator() {
-    let numbers = [0, 1], index = 2;
+    let numbers = [0, 1];
     return () => {
-        let newNumber = numbers[index - 2] + numbers[index - 1];
-        numbers.push(newNumber);
-        return numbers[index++]
+        let newNumber = numbers[0] + numbers[1];
+        numbers[0] = numbers[1];
+        numbers[1] = newNumber;
+        return newNumber;
     };
 }
 

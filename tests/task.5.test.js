@@ -1,4 +1,4 @@
-import { lazyMap } from "../src/task5";
+import { lazyMap, fibonacciGenerator } from "../src/task5";
 
 describe('lazyMap', () => {
     test('ok', () => {
@@ -21,5 +21,17 @@ describe('lazyMap', () => {
     test('validation', () => {
         expect(() => lazyMap(() => NaN, () => 1)).toThrow(TypeError);
         expect(() => lazyMap(() => [1], () => undefined)).toThrow(TypeError);
+    });
+});
+
+describe('fibonacciGenerator', () => {
+    test('ok', () => {
+        let generator = fibonacciGenerator();
+        expect(generator()).toEqual(1);
+        expect(generator()).toEqual(2);
+        expect(generator()).toEqual(3);
+        expect(generator()).toEqual(5);
+        expect(generator()).toEqual(8);
+        expect(generator()).toEqual(13);
     });
 });

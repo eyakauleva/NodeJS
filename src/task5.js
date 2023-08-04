@@ -14,3 +14,12 @@ export function lazyMap(arrayArg, mappingFuncArg) {
         }
     };
 }
+
+export function fibonacciGenerator() {
+    let numbers = [0, 1], index = 2;
+    return () => {
+        let newNumber = numbers[index - 2] + numbers[index - 1];
+        numbers.push(newNumber);
+        return numbers[index++]
+    };
+}

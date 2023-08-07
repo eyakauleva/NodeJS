@@ -1,6 +1,6 @@
 import { Person } from "../src/task1";
 
-describe('', () => {
+describe('task 1', () => {
     const person = new Person();
 
     test('properties are not writable', () => {

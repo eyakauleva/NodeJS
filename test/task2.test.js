@@ -1,6 +1,6 @@
 import { Product, getTotalPrice, deleteNonConfigurable } from "../src/task2";
 
-describe('', () => {
+describe('task 2', () => {
     const product = new Product();
 
     test('properties are not writable', () => {

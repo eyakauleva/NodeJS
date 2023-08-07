@@ -14,7 +14,6 @@ describe('task 2', () => {
     });
 
     test('getTotalPrice ok', () => {
-        let product = new Product();
         expect(getTotalPrice(product)).toEqual(5000);
     });
 
@@ -32,8 +31,8 @@ describe('task 2', () => {
 
     test('deleteNonConfigurable validation', () => {
         expect(() => deleteNonConfigurable({}, "")).toThrow(TypeError);
-        expect(() => deleteNonConfigurable(new Product(), 123)).toThrow(TypeError);
-        expect(() => deleteNonConfigurable(new Product(), "new property")).toThrow(TypeError);
+        expect(() => deleteNonConfigurable(product, 123)).toThrow(TypeError);
+        expect(() => deleteNonConfigurable(product, "new property")).toThrow(TypeError);
     });
 
 });

@@ -30,6 +30,8 @@ describe('task 6', () => {
         const deepClonedObj = deepCloneObject(initObject);
         initObject[0] = "me";
         expect(deepClonedObj[0]).toEqual("Liza");
+        deepClonedObj[1][2] = {};
+        expect(initObject[1]).toEqual([1,2,3]);
         deepClonedObj[1] = {};
         expect(initObject[1]).toEqual([1,2,3]);
     });

@@ -3,14 +3,8 @@ export function chunkArray(array, chunkSize) {
         throw new TypeError("Bad params");
     }
     let result = [];
-    for(let i = 0; i < array.length; ) {
-        let subArray = [];
-        for (let j = 0; j < chunkSize; j++, i++) {
-            if(typeof array[i] !== "undefined") {
-                subArray.push(array[i]);
-            }
-        }
-        result.push(subArray);
+    for (let i = 0; i < array.length; i += chunkSize) {
+        result.push(array.slice(i, i + chunkSize));
     }
     return result;
 }

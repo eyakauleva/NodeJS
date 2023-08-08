@@ -1,9 +1,14 @@
 {
-  "name": "task1",
+  "name": "task5",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/index.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
+  },
   "author": "",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "jest": "^29.6.2"
+  }
 }

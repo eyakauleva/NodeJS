@@ -20,7 +20,6 @@ export function Person() {
             writable: false,
         },
         address: {
-            writable: false,
             enumerable: false,
             configurable: false
         }

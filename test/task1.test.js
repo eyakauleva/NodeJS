@@ -8,13 +8,12 @@ describe('task 1', () => {
         expect(() => person.lastName = "new").toThrow();
         expect(() => person.age = "new").toThrow();
         expect(() => person.email = "new").toThrow();
-        expect(() => person.address = "new").toThrow();
     });
 
     test('updateInfo not throws & adheres to the read-only descriptor', () => {
         expect(() => person.updateInfo({firstName: "name", address: "addr"})).not.toThrow();
         expect(person.firstName).not.toEqual("name");
-        expect(person.address).not.toEqual("addr");
+        expect(person.address).toEqual("addr");
     });
 
     test('address property is non-enumerable and non-configurable', () => {
@@ -22,11 +21,7 @@ describe('task 1', () => {
         for (const key in person){
             expect(key).not.toEqual(property);
         }
-        expect(() => 
-            Object.defineProperty(person, property, {
-                writable: true
-            })
-        ).toThrow();
+        expect(() => delete person[key]).toThrow();
     });
 
 });

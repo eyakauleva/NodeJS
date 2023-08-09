@@ -8,11 +8,12 @@ describe('task 5', () => {
         const handler = {
             get: (target, key) => {
                 console.log("get: " + key);
-                return Reflect.get(target, key);
+                return target[key];
             },
             set: (target, key, value) => {
                 console.log("set: " + key);
-                return Reflect.set(target, key, value);
+                target[key] = value;
+                return true;
             }
         };
         const proxyObject = observeObject(person, handler);

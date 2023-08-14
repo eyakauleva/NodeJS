@@ -2,7 +2,11 @@ export function curry(func, arity) {
     if (typeof func !== "function" || typeof arity !== "number" || Number.isNaN(arity)) {
         throw new TypeError("Bad params");
     }
+    let counter = 1;
     return function curried (...args) {
+        if (args.length != counter++) {
+            throw new Error("Pass args one by one")
+        }
         if (arity !== args.length){
             return curried.bind(null, ...args)
         }

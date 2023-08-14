@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <style>
+            #card-container {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .card {
+                height: 55vh;
+                width: calc((100% / 3) - 18px);
+                margin: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="card-container"></div>
+        <script type="module" src="./task5.test.js"></script>
+        <script>
+            const cardContainer = document.getElementById("card-container");
+            for(let i = 1; i <= 27; i++) {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = i;
+                card.style.backgroundColor = '#ffffa6';
+                card.style.border = '1px solid black'
+                cardContainer.appendChild(card);
+            }
+        </script>
+    </body>
+</html>

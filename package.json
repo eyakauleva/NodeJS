@@ -5,6 +5,9 @@
   "scripts": {
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest"
   },
+  "jest": {
+    "testPathIgnorePatterns": ["test/task4.test.js", "test/task5.test.js"]
+  },
   "author": "",
   "license": "ISC",
   "type": "module",

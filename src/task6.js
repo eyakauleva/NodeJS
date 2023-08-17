@@ -4,7 +4,7 @@ export function curry(func, arity) {
     }
     let counter = 1;
     return function curried(...args) {
-        if (args.length != counter++) {
+        if (args.length !== counter++) {
             throw new Error("Pass args one by one")
         }
         if (arity !== args.length){

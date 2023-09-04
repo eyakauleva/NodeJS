@@ -6,9 +6,7 @@ function sort(array) {
     for (let i = 0; i < length; i++) {
         for (let j = i + 1; j < length; j++) {
             if (array[i] > array[j]) {
-                let buf = array[i];
-                array[i] = array[j];
-                array[j] = buf;
+                [array[i], array[j]] = [array[j], array[i]];
             }
         }
     }
